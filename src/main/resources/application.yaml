@@ -1,0 +1,34 @@
+spring:
+  #JSP路径配置
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.200.15:3306/bnqs2b?useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: Wki7rj#1
+    # Druid配置
+    type: com.alibaba.druid.pool.DruidDataSource
+    filters: stat,wall,log4j
+    maxActive: 20
+    initialSize: 1
+    maxWait: 60000
+  jpa:
+    database: mysql
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+  # fastJson视图转换解决中文乱码
+  http:
+    encoding:
+      force: true
+  #文件上传最大限制
+  servlet:
+    multipart:
+      max-file-size: 20MB
+
+

@@ -1,0 +1,10 @@
+${AnsiColor.BRIGHT_RED}
+巴拉巴拉巴拉，把你变成猪！
+　 ∧＿∧
+(｡･ω･｡)つ━☆・*。
+⊂　　 ノ 　　　・゜+.
+　しーＪ　　　°。+ *´¨)
+　　　 　　.· ´¸.·*´¨) ¸.·*¨)
+　　　　　　　 　(¸.·´ (¸.·’*
+
+Spring Boot Version: ${spring-boot.formatted-version}
