@@ -76,7 +76,7 @@ public class RabbitMqTestAction {
          * @param body 消息对象转换的byte[]
          * @throws java.io.IOException if an error is encountered
          */
-        channel.basicPublish("", queueName, true, false, MessageProperties.TEXT_PLAIN, SerializationUtils.serialize(object));
+//        channel.basicPublish("", queueName, true, false, MessageProperties.TEXT_PLAIN, SerializationUtils.serialize(object));
 
 
         //关闭管道和连接
