@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <!-- 配置rabbitMQ连接 -->
+    <rabbit:connection-factory id="connectionFactory"
+                               host="${rabbitmq.host}"
+                               port="${rabbitmq.port}"
+                               username="${rabbitmq.username}"
+                               password="${rabbitmq.password}"
+
+                               publisher-confirms="true"
+                               publisher-returns="true"
+                               channel-cache-size="5"
+    />
+    <!--virtual-host=""-->
+    <!-- 配置rabbitMQ连接 -->
+    <!--<bean id="connectionFactory"-->
+    <!--class="org.springframework.amqp.rabbit.connection.CachingConnectionFactory">-->
+    <!--<constructor-arg value="${rabbitmq.host}" />-->
+    <!--<property name="username" value="${rabbitmq.username}" />-->
+    <!--<property name="password" value="${rabbitmq.password}" />-->
+    <!--<property name="port" value="${rabbitmq.port}" />-->
+    <!--&lt;!&ndash; 缓存中要维护的通道数 &ndash;&gt;-->
+    <!--<property name="channelCacheSize" value="5" />-->
+    <!--&lt;!&ndash; 开启发送确认机制 &ndash;&gt;-->
+    <!--<property name="publisherConfirms" value="true"/>-->
+    <!--&lt;!&ndash; 开启结果返回机制 &ndash;&gt;-->
+    <!--<property name="publisherReturns" value="true"/>-->
+    <!--</bean>-->
+
+    <!-- 配置RabbitAdmin -->
+    <rabbit:admin connection-factory="connectionFactory"/>
+
+    <!-- 定义Queue
+    durable：是否持久化
+    auto-delete：是否当没有连接时自动删除
+    exclusive：是否只能由创建者使用-->
+    <rabbit:queue name="queueTest" durable="true" auto-delete="false"
+                  exclusive="false"/>
+
+    <!-- 定义Exchange，并绑定Queue -->
+    <!-- 定义direct类型 -->
+    <rabbit:direct-exchange name="exchangeTest"
+                            durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <!-- 此处没有指定RoutingKey -->
+            <rabbit:binding queue="queueTest" key="test"/>
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- 定义topic类型 -->
+    <rabbit:topic-exchange name="topicExchangeTest" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="queueTest" pattern="#.action"/>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <!-- 定义topic类型 -->
+    <rabbit:fanout-exchange name="fanoutExchangeTest"/>
+
+    <!--注意：在此例中，如果不把Exchange和queue进行绑定，发送消息的时候ConfirmCallback依然正常执行，因为消息到达了Exchange。但是ReturnCallback就会执行回调方法，传回错误信息：NO_ROUTE。Exchange没有找到指定的Queue，丢弃这条消息并把消息返回给生产者。回调顺序是ReturnCallback在前，ConfirmCallback在后。-->
+
+    <!-- 定义rabbit template -->
+
+    <rabbit:template id="rabbitTemplate" connection-factory="connectionFactory"
+                     exchange="exchangeTest"
+                     mandatory="true"
+                     confirm-callback="confirmcallback"
+                     return-callback="MyReturnCallback"
+                     encoding="UTF-8"
+                     message-converter="JsonMessageConverter"
+    >
+    </rabbit:template>
+
+
+
+    <bean class="org.springframework.amqp.rabbit.core.RabbitTemplate" id="rabbitTemplate">
+        <property name="connectionFactory" ref="connectionFactory" />
+        <property name="exchange" value="exchangeTest" />
+
+        <!-- 启动AMQP协议层面事务机制来解决发送确认机制，但是采用事务机制实现会降低RabbitMQ的消息吞吐量。
+        RabbitMQ团队为我们拿出了更好的方案，即采用发送方确认模式，事务机制和confirmCallback只能二选一 -->
+        <!-- <property name="channelTransacted" value="true" /> -->
+
+        <!-- mandatory 监听是否有符合的队列 -->
+        <property name="mandatory" value="true"/>
+
+        <!-- 设置发送确认回执监听方法 -->
+        <property name="confirmCallback" ref="confirmcallback" />
+        <!-- 设置结果返回监听方法 -->
+        <property name="returnCallback" ref="MyReturnCallback"/>
+        <!-- 设置消息转换 -->
+        <property name="messageConverter" ref="JsonMessageConverter" />
+    </bean>
+
+    <bean id="JsonMessageConverter" class="org.springframework.amqp.support.converter.JsonMessageConverter">
+        <!-- if necessary, override the DefaultClassMapper -->
+        <property name="classMapper" ref="customClassmapper" />
+    </bean>
+
+    <bean id="customClassmapper" class="pruducer.com.taikang.tkh.message.common.CustomClassMapper"/>
+    <bean id="confirmcallback" class="pruducer.com.taikang.tkh.message.common.ConfirmReturnBack"/>
+    <bean id="MyReturnCallback" class="pruducer.com.taikang.tkh.message.common.MyReturnCallback"/>
+
+</beans>
