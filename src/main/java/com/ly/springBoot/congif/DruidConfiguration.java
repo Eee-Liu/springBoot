@@ -1,4 +1,4 @@
-package com.ly.springBoot;
+package com.ly.springBoot.congif;
 
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;

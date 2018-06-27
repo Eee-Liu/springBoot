@@ -31,4 +31,12 @@ spring:
     multipart:
       max-file-size: 20MB
 
+mongo:
+  host: 10.184.120.22
+  port: 27017
+  dbName: bnqs2b
+server:
+  context-path:  /springboot-log
 
+#  servlet:
+#    context-path: /springboot-log

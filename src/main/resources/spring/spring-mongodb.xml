@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/data/mongo
+http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+    <!-- mongo服务端链接 -->
+    <mongo:mongo-client id="mongoClient" host="${mongo.host}" port="${mongo.port}">
+        <mongo:client-options connections-per-host="20"
+                              threads-allowed-to-block-for-connection-multiplier="50"
+                              connect-timeout="5000"
+                              max-wait-time="5000"
+                              socket-keep-alive="true"
+                              socket-timeout="2000"/>
+    </mongo:mongo-client>
+
+    <!-- 链接工厂 -->
+    <mongo:db-factory id="mongoDbFactory" dbname="${mongo.dbName}" mongo-ref="mongoClient"/>
+
+    <!-- mongoTemplate两种方式 -->
+    <mongo:template id="mongoTemplate" db-factory-ref="mongoDbFactory" write-concern="NORMAL"/>
+
+    <!--<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
+        <!--<constructor-arg name="mongoDbFactory" ref="mongoDbFactory"/>-->
+    <!--</bean>-->
+
+    <mongo:repositories base-package="com.ly.springBoot.action" />
+    <!--激活注解-->
+    <bean class="org.springframework.context.annotation.CommonAnnotationBeanPostProcessor"/>
+</beans>

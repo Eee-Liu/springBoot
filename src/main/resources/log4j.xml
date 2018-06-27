@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration debug="true"
+                     xmlns:log4j='http://jakarta.apache.org/log4j/'>
+
+    <appender name="console" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d{yyyy-MM-dd HH:mm:ss} %-5p %l - %m%n"/>
+        </layout>
+    </appender>
+
+    <!--默认log level -->
+    <appender name="springBootLog" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="File" value="/springBoot/logs/springBoot/root.log"/>
+        <param name="Append" value="true"/>
+        <param name="DatePattern" value="'.'yyyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern"
+                   value="%d %-5p %l - %m%n"/>
+        </layout>
+    </appender>
+    <logger name="commonLog" additivity="false">
+        <level value="INFO"/>
+        <appender-ref ref="springBootLog"/>
+    </logger>
+
+	<!--mongo log-->
+	<appender name="mongoAppender" class="com.ly.springBoot.common.log.MongoAppender">
+		<param name="collectionName" value="s2bApiLogs"/>
+		<param name="expireDays" value="30"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				   value="{date:'%d', level:'%-5p', class:'%l'}"/>
+		</layout>
+	</appender>
+	<logger name="mongoLogger" additivity="false">
+		<level value="ERROR"/>
+		<appender-ref ref="mongoAppender"/>
+	</logger>
+
+    <root>
+        <level value="info"/>
+        <appender-ref ref="console"/>
+        <appender-ref ref="springBootLog"/>
+    </root>
+
+</log4j:configuration>

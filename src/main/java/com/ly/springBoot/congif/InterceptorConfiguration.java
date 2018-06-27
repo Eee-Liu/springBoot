@@ -1,4 +1,4 @@
-package com.ly.springBoot;
+package com.ly.springBoot.congif;
 
 import com.ly.springBoot.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Configuration;

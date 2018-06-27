@@ -1,7 +1,11 @@
 package com.ly.springBoot.action;
 
 import com.alibaba.fastjson.JSONObject;
+import com.ly.springBoot.common.SpringContext;
 import com.ly.springBoot.domain.PersonDO;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +23,11 @@ import java.io.IOException;
 @Controller
 @RequestMapping("/auth")
 public class LoginAction {
+    Logger logger = LoggerFactory.getLogger("mongoLogger");
     @RequestMapping("/login.view")
     public String loginView(){
+        logger.info("info日志");
+        logger.error("error日志");
         return "login";
     }
 
