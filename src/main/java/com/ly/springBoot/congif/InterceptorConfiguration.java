@@ -14,8 +14,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class InterceptorConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AuthInterceptor())
-                .addPathPatterns("/**") //拦截路径
-                .excludePathPatterns("/js/**", "/**/error", "/css/**", "/auth/login.do", "/auth/login.view");//过滤路径
+//        registry.addInterceptor(new AuthInterceptor())
+//                .addPathPatterns("/**") //拦截路径
+//                .excludePathPatterns("/js/**", "/**/error", "/css/**", "/auth/login.do", "/auth/login.view");//过滤路径
     }
 }

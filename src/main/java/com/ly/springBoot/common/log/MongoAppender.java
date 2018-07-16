@@ -3,7 +3,6 @@ package com.ly.springBoot.common.log;
 import com.ly.springBoot.common.SpringContext;
 import com.mongodb.DBObject;
 import com.mongodb.util.JSON;
-import com.sun.xml.internal.fastinfoset.util.ValueArray;
 import org.apache.log4j.AppenderSkeleton;
 import org.apache.log4j.spi.LoggingEvent;
 import org.log4mongo.LoggingEventBsonifier;
