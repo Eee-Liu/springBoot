@@ -1,6 +1,7 @@
 package com.ly.springBoot.amqp_client.topic;
 
-import com.ly.springBoot.action.mq.amqp_client.MqUtils;
+
+import com.ly.springBoot.amqp_client.MqUtils;
 import com.rabbitmq.client.Channel;
 
 /**

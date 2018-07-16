@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.mq;
+package com.ly.springBoot.action.mq.direct;
 
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -19,11 +19,11 @@ import java.util.UUID;
  */
 @Controller
 @RequestMapping("/sendMsg")
-public class MessageSender implements RabbitTemplate.ConfirmCallback {
+public class DirectSender implements RabbitTemplate.ConfirmCallback {
     @Autowired
     private RabbitTemplate rabbitTemplate;
 
-    @RequestMapping("/msg")
+    @RequestMapping("/direct.do")
     public void sendMessage() {
         Map<String, Object> log = new HashMap<String, Object>();
         log.put("level", "info");
@@ -40,7 +40,8 @@ public class MessageSender implements RabbitTemplate.ConfirmCallback {
     }
 
     /**
-     * 消息回调确认方法,当一个消息被成功写入到RabbitMQ服务端时，就会自动的回调RabbitTemplate.ConfirmCallback接口内的confirm方法完成通知
+     * 消息回调确认方法,当一个消息被成功写入到RabbitMQ服务端时，
+     * 就会自动的回调RabbitTemplate.ConfirmCallback接口内的confirm方法完成通知
      *
      * @param correlationData 请求数据对象
      * @param ack             是否发送成功

@@ -1,6 +1,7 @@
 package com.ly.springBoot.amqp_client.fanout;
 
-import com.ly.springBoot.action.mq.amqp_client.MqUtils;
+
+import com.ly.springBoot.amqp_client.MqUtils;
 import com.rabbitmq.client.AMQP;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Consumer;

@@ -1,6 +1,6 @@
 package com.ly.springBoot.amqp_client;
 
-import com.ly.springBoot.action.mq.amqp_client.MqUtils;
+
 import com.rabbitmq.client.Channel;
 
 import java.io.IOException;
