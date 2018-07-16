@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.mq.springBoot_starter_amqp;
+package com.ly.springBoot.action.mq;
 
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
