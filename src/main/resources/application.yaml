@@ -44,9 +44,7 @@ mongo:
   host: 10.184.120.22
   port: 27017
   dbName: bnqs2b
-server:
-  port: 8080
-  context-path: /ly
+
 
 #  servlet:
 #    context-path: /springboot-log
@@ -55,3 +53,7 @@ server:
 #使用自定义日志配置文件(spring boot默认会加载classpath:logback-spring.xml或classpath:logback.xml)
 logging:
   config: classpath:log4j.xml
+
+server:
+  port: 8080
+  context-path: /ly

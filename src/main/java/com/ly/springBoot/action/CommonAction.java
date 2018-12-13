@@ -1,8 +1,11 @@
 package com.ly.springBoot.action;
 
+import com.ly.springBoot.action.designPattern.creational.工厂模式.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -63,6 +66,20 @@ public class CommonAction {
         } catch (IOException e) {
             e.printStackTrace();
             return "上传失败";
+        }
+        return "ok";
+    }
+
+    @Autowired
+    private Test test;
+    @ResponseBody
+    @RequestMapping(value = "/test.do", method = RequestMethod.GET)
+    public String readTest(@RequestParam(value = "type")String type) throws Exception {
+        try {
+            test.read(type);
+            return "OK";
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return "ok";
     }

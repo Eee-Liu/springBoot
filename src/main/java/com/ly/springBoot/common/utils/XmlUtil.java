@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.designPattern.creational.简单工厂模式;
+package com.ly.springBoot.common.utils;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -7,6 +7,7 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.InputStream;
+import java.util.Date;
 
 /**
  * @Author: LiuYi
@@ -27,5 +28,9 @@ public class XmlUtil {
             e.printStackTrace();
             return "";
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Date().getTime());
     }
 }
