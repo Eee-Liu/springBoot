@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.designPattern.creational.工厂模式;
+package com.ly.springBoot.action.designPattern.工厂模式;
 
 import com.ly.springBoot.common.SpringContext;
 import org.springframework.beans.factory.annotation.Autowired;

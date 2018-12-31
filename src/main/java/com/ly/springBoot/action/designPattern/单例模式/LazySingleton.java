@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.designPattern.creational.单例模式;
+package com.ly.springBoot.action.designPattern.单例模式;
 
 /**
  * @Author: LiuYi

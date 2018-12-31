@@ -1,6 +1,6 @@
 package com.ly.springBoot.action;
 
-import com.ly.springBoot.action.designPattern.creational.工厂模式.Test;
+import com.ly.springBoot.action.designPattern.工厂模式.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.designPattern.creational.工厂模式;
+package com.ly.springBoot.action.designPattern.工厂模式;
 
 import org.springframework.stereotype.Component;
 

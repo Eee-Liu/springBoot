@@ -1,4 +1,4 @@
-package com.ly.springBoot.action.designPattern.creational.简单工厂模式;
+package com.ly.springBoot.action.designPattern.简单工厂模式;
 
 /**
  * @Author: LiuYi
