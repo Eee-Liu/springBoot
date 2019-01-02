@@ -2,4 +2,6 @@
 <config>
     <chartType>rectangle</chartType>
     <chartType>123</chartType>
+    <builderName>com.ly.springBoot.action.designPattern.creational.建造者模式.FullBuilder</builderName>
+    <!--<builderName>com.ly.springBoot.action.designPattern.creational.建造者模式.SimpleBuilder</builderName>-->
 </config>

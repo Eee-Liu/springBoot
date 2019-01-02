@@ -16,12 +16,16 @@ import java.util.Date;
  */
 public class XmlUtil {
     public String getChartType() {
+        return getChartType("chartType");
+    }
+
+    public String getChartType(String labelName) {
         try {
             DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder documentBuilder = builderFactory.newDocumentBuilder();
             InputStream stream = this.getClass().getResourceAsStream("/config.xml");
             Document document = documentBuilder.parse(stream);
-            NodeList nodeList = document.getElementsByTagName("chartType");
+            NodeList nodeList = document.getElementsByTagName(labelName);
             Node firstChild = nodeList.item(0).getFirstChild();
             return firstChild.getNodeValue().trim();
         } catch (Exception e) {
@@ -29,6 +33,7 @@ public class XmlUtil {
             return "";
         }
     }
+
 
     public static void main(String[] args) {
         System.out.println(new Date().getTime());
