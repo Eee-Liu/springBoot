@@ -2,7 +2,7 @@ package com.ly.springBoot.action.designPattern.Structural.桥接模式;
 
 /**
  * @Author: LiuYi
- * @Description: 桥接模式,将影响一个类的两个或多个维度因素,分为抽象部分跟实现部分,连着为关联关系,并且
+ * @Description: 桥接模式,将影响一个类的两个或多个维度因素,分为抽象部分跟实现部分,两者为关联关系,并且
  * 二者可以独立进行扩展.
  * @Date: Created in 2018/12/7 17:32
  */
