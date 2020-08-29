@@ -42,5 +42,7 @@ public class CountDownLatchTest {
         System.out.println("main over");
         countDownLatch.await();
         System.out.println("main over2");
+        //记得关闭线程池!!!
+        threadPool.shutdown();
     }
 }

@@ -79,5 +79,7 @@ public class CyclicBarrierTest {
                 }
             }
         });
+        //记得关闭线程池!!!
+        threadPool.shutdown();
     }
 }
